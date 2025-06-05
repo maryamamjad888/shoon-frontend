@@ -23,6 +23,13 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "localhost",
+        port: "9001", // Explicitly add port for local development
+        pathname: "/static/**" // Be specific about the path
+      },
+      {
+        protocol: "https",
+        hostname: "shoon-backend.onrender.com", // Add your Render backend
+        pathname: "/static/**"
       },
       {
         protocol: "https",
@@ -37,6 +44,10 @@ const nextConfig = {
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },
     ],
+    // Optional but recommended for better caching
+    minimumCacheTTL: 60,
+    // If you're still having issues, you can temporarily add:
+    // unoptimized: true
   },
 }
 
