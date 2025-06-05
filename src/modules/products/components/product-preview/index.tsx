@@ -8,6 +8,7 @@ import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { Heart } from "lucide-react"
+import { getImageUrl } from "@lib/util/get-image-url"
 
 export default function ProductPreview({
   product,
@@ -42,11 +43,15 @@ export default function ProductPreview({
         className="transition-all border border-transparent group-hover:border-gray-200 p-2 relative"
       >
         <Thumbnail
-          thumbnail={product.thumbnail}
-          images={product.images}
+          thumbnail={getImageUrl(product.thumbnail)}
+          images={product.images?.map((img) => ({
+            ...img,
+            url: getImageUrl(img.url),
+          }))}
           size="full"
           isFeatured={isFeatured}
         />
+
 
         {cheapestPrice?.price_type === "sale" && (
           <div className="relative h-8 my-8 w-full">
@@ -65,9 +70,8 @@ export default function ProductPreview({
             >
               <Heart
                 size={18}
-                className={`transition-colors ${
-                  isLiked ? "text-red-500 fill-red-500" : "text-gray-500"
-                }`}
+                className={`transition-colors ${isLiked ? "text-red-500 fill-red-500" : "text-gray-500"
+                  }`}
               />
             </button>
           </div>
