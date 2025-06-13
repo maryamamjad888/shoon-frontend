@@ -1,14 +1,12 @@
-"use client"
+"use client";
 import { HttpTypes } from "@medusajs/types";
-import { Container } from "@medusajs/ui";
 import Image from "next/image";
 import { useState, useEffect, useRef, SetStateAction } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CustomVerticalArrow from "../custom-arrow";
-
-
+import CustomHorizontalArrow from "../horizantal-arrow";
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[];
@@ -21,7 +19,10 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const imageRef = useRef<HTMLDivElement>(null);
+  const thumbnailSliderRef = useRef<Slider | null>(null);
+
   const zoomFactor = 2.5;
+  const isSmallScreen = typeof window !== "undefined" && window.innerWidth < 500;
 
   useEffect(() => {
     if (images.length > 0) {
@@ -30,50 +31,48 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   }, [images]);
 
   useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-        return () => {
-      document.body.style.overflow = 'unset';
+    document.body.style.overflow = modalOpen ? "hidden" : "unset";
+    return () => {
+      document.body.style.overflow = "unset";
     };
   }, [modalOpen]);
 
-  const handleImageClick = (image: SetStateAction<HttpTypes.StoreProductImage>, index: number) => {
-    setSelectedImage(image);
-   
+  const changeImage = (direction: "next" | "prev") => {
+    const currentIndex = images.findIndex((img) => img.id === selectedImage.id);
+    const nextIndex =
+      direction === "next"
+        ? (currentIndex + 1) % images.length
+        : (currentIndex - 1 + images.length) % images.length;
+
+    setSelectedImage(images[nextIndex]);
+    thumbnailSliderRef.current?.slickGoTo(nextIndex);
   };
 
   const handleMainImageClick = () => {
-    const index = images.findIndex(img => img.id === selectedImage.id);
+    const index = images.findIndex((img) => img.id === selectedImage.id);
     setCurrentSlide(index !== -1 ? index : 0);
     setModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const closeModal = () => setModalOpen(false);
 
   const handleMouseEnter = () => {
-    setIsHovering(true);
+    if (!isSmallScreen) setIsHovering(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
   };
 
-  const handleMouseMove = (e: { clientX: number; clientY: number; }) => {
-    if (imageRef.current) {
+  const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+    if (!isSmallScreen && imageRef.current) {
       const rect = imageRef.current.getBoundingClientRect();
-      
-      const x = ((e.clientX - rect.left) / rect.width);
-      const y = ((e.clientY - rect.top) / rect.height);
-      
-      const boundedX = Math.max(0, Math.min(1, x));
-      const boundedY = Math.max(0, Math.min(1, y));
-      
-      setMousePosition({ x: boundedX, y: boundedY });
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      setMousePosition({
+        x: Math.max(0, Math.min(1, x)),
+        y: Math.max(0, Math.min(1, y)),
+      });
     }
   };
 
@@ -93,16 +92,18 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     },
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 640,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           vertical: false,
-          verticalSwiping: false
-        }
-      }
-    ]
+          verticalSwiping: false,
+        arrows: true,
+        prevArrow: <CustomHorizontalArrow type="left" />,
+        nextArrow: <CustomHorizontalArrow type="right" />,
+        },
+      },
+    ],
   };
-  
 
   const modalSliderSettings = {
     dots: true,
@@ -112,49 +113,53 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     slidesToScroll: 1,
     initialSlide: currentSlide,
     afterChange: (current: SetStateAction<number>) => setCurrentSlide(current),
-    arrows: true
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+        arrows: false,
+        },
+      },
+    ],
   };
 
   useEffect(() => {
-    const handleKeyDown = (e: { key: string; }) => {
+    const handleKeyDown = (e: { key: string }) => {
       if (!modalOpen) return;
-      
-      if (e.key === 'Escape') {
-        closeModal();
-      } else if (e.key === 'ArrowRight') {
-        setCurrentSlide((prev) => (prev + 1) % images.length);
-      } else if (e.key === 'ArrowLeft') {
-        setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
-      }
+      if (e.key === "Escape") closeModal();
+      else if (e.key === "ArrowRight") setCurrentSlide((prev) => (prev + 1) % images.length);
+      else if (e.key === "ArrowLeft") setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [modalOpen, images.length]);
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start relative gap-4">
-        <div className="md:w-1/6 max-h-80 px-1 my-6">
-          <Slider {...thumbnailSliderSettings}>
+      <div className="flex flex-col sm:flex-row items-start gap-4 relative">
+        {/* Thumbnail Slider on the LEFT */}
+        <div className="w-full max-[500px]:hidden sm:w-1/6 max-h-80 px-1 sm:my-6 order-2 sm:order-none sm:order-first">
+          <Slider ref={thumbnailSliderRef} {...thumbnailSliderSettings}>
             {images.map((image, index) => (
-              <div 
-                key={image.id} 
+              <div
+                key={image.id}
                 className="p-1 cursor-pointer"
-                onClick={() => handleImageClick(image, index)}
+                onClick={() => setSelectedImage(image)}
               >
-                <div className={`relative aspect-square w-full overflow-hidden bg-ui-bg-subtle border ${selectedImage.id === image.id ? 'border-black' : 'border-gray-200'}`}>
+                <div
+                  className={`relative aspect-square w-full overflow-hidden border ${
+                    selectedImage.id === image.id ? "border-black" : "border-gray-200"
+                  }`}
+                >
                   {image.url && (
                     <Image
                       src={image.url}
                       alt={`Product thumbnail ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 100px, 150px"
-                      style={{
-                        objectFit: "cover",
-                      }}
+                      style={{ objectFit: "cover" }}
                     />
                   )}
                 </div>
@@ -162,8 +167,29 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             ))}
           </Slider>
         </div>
- 
-        <div className="w-full md:w-3/5">
+
+        {/* Main Image */}
+        <div className="w-full sm:w-3/5 order-1 sm:order-none relative">
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 z-10 sm:hidden">
+    <button
+      onClick={() => changeImage("prev")}
+      className="text-black text-4xl font-bold p-1 hover:scale-110 transition"
+      aria-label="Previous image"
+    >
+      ❮
+    </button>
+  </div>
+
+  {/* Right Arrow Button */}
+  <div className="absolute top-1/2 -translate-y-1/2 -right-4 z-10 sm:hidden">
+    <button
+      onClick={() => changeImage("next")}
+      className="text-black text-4xl font-bold p-1 hover:scale-110 transition"
+      aria-label="Next image"
+    >
+      ❯
+    </button>
+  </div>
           <div
             ref={imageRef}
             className="relative aspect-[20/20] w-full overflow-hidden cursor-pointer"
@@ -188,25 +214,20 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                     transition: "opacity 0.2s",
                   }}
                 />
-                
                 {isHovering && (
-                  <>
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                      <div
-                        style={{
-                          position: 'absolute',
-                          width: '100%',
-                          height: '100%',
-                          backgroundImage: `url(${selectedImage.url})`,
-                          backgroundPosition: `${mousePosition.x * 100}% ${mousePosition.y * 100}%`,
-                          backgroundSize: `${zoomFactor * 100}%`,
-                          backgroundRepeat: 'no-repeat',
-                          opacity: 1,
-                        }}
-                      />
-                    </div>
-                    
-                  </>
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "100%",
+                        height: "100%",
+                        backgroundImage: `url(${selectedImage.url})`,
+                        backgroundPosition: `${mousePosition.x * 100}% ${mousePosition.y * 100}%`,
+                        backgroundSize: `${zoomFactor * 100}%`,
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    />
+                  </div>
                 )}
               </>
             )}
@@ -214,43 +235,41 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         </div>
       </div>
 
+      {/* Modal View */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-4" style={{ zIndex: 9999 }}>
             <button
               onClick={closeModal}
               className="text-white bg-black bg-opacity-50 hover:bg-opacity-70 p-2 rounded-full transition-all"
               aria-label="Close modal"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
           </div>
-          
-          <div className="w-full max-w-6xl px-4">
+          <div className="w-full max-w-6xl px-4 max-sm:-ml-16">
             <Slider {...modalSliderSettings}>
               {images.map((image, index) => (
-                <div key={image.id} className="outline-none">
-                  <div className="relative aspect-video md:aspect-[16/9] lg:aspect-[2/1] w-full flex items-center justify-center">
-                    <Image
-                      src={image.url}
-                      alt={`Product image ${index + 1}`}
-                      width={1200}
-                      height={800}
-                      style={{
-                        objectFit: "contain",
-                        maxHeight: "85vh",
-                        width: "auto",
-                        margin: "0 auto"
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
+  <div key={image.id} className="outline-none">
+    <div className="relative aspect-video md:aspect-[16/9] lg:aspect-[2/1] w-full flex items-center justify-center">
+      <Image
+        src={image.url}
+        alt={`Product image ${index + 1}`}
+        width={1200}
+        height={800}
+        className="sm:w-auto sm:h-auto w-[325px] h-[325px] object-contain"
+        style={{
+          maxHeight: "85vh",
+          margin: "0 auto",
+        }}
+      />
+    </div>
+  </div>
+))}
             </Slider>
-            
             <div className="text-white text-center mt-4">
               {currentSlide + 1} / {images.length}
             </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaPinterestP, FaRegCommentDots, FaXTwitter } from 'react-icons/fa6';
+import FooterLinks from '../mobile-footer';
+import TabFooter from '../tab-footer';
 
 const Footer: React.FC = () => {
   return (
@@ -14,11 +16,12 @@ const Footer: React.FC = () => {
             <a href="#" className="hover:bg-orange-500 hover:text-white text-black p-2 rounded-full transition-colors duration-300"><FaRegCommentDots /></a>
           </div>
 
-        </div>
-        <div className="flex flex-col lg:flex-row justify-center gap-6 border-b py-8">
-
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full px-20">
+    </div>
+        <div className="flex !flex-col sm:flex-row justify-center gap-6 border-b py-8">
+           <FooterLinks/>
+           <TabFooter/>
+          <div className="hidden xl:grid grid-cols-2 xl:grid-cols-4 gap-6 w-full px-20">
+            {/* Help */}
             <div>
               <h4 className="text-lg mb-3 text-black font-como">Help</h4>
               <ul className="space-y-2 text-gray font-light text-sm">
@@ -27,7 +30,7 @@ const Footer: React.FC = () => {
                 ))}
               </ul>
             </div>
-
+           {/* Pages */}
             <div>
               <h4 className="text-lg font-como mb-3 text-black">Pages</h4>
               <ul className="space-y-2 text-gray font-light text-sm">
@@ -36,7 +39,7 @@ const Footer: React.FC = () => {
                 ))}
               </ul>
             </div>
-
+           {/* More Information */}
             <div>
               <h4 className="text-lg font-como mb-3 text-black">More Information</h4>
               <ul className="space-y-2 text-gray font-light text-sm">
@@ -45,7 +48,7 @@ const Footer: React.FC = () => {
                 ))}
               </ul>
             </div>
-
+            {/* NewsLetter */}
             <div>
               <h4 className="text-lg font-como mb-3 text-black">Newsletter Sign Up</h4>
               <div className="flex items-center border border-gray-300 overflow-hidden mb-2 w-[320px]">
@@ -71,26 +74,26 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-
-
-
+       
+     
+       
 
 
         <div className="text-center text-xs text-gray-500 space-y-4 mt-8">
-          <div className="flex justify-around">
-            <p className="xs text-gray font-light">© 2025 Moda in Pelle. All Rights Reserved.</p>
-            <div className="flex justify-center items-center flex-wrap gap-4">
-              {[
-                '/cards/mastercard.png',
-                '/cards/visa.png',
-                '/cards/maestro.png',
-                '/cards/paypal.png',
-                '/cards/amazonpay.png',
-                '/cards/amex.png',
-                '/cards/klarna.png'
-              ].map((src, idx) => (
-                <img key={idx} src={src} alt="payment" className="h-6" />
-              ))}
+          <div className="flex flex-col sm:flex-row justify-around gap-4 sm:gap-0">
+          <p className="xs text-gray font-light">© 2025 Moda in Pelle. All Rights Reserved.</p>
+          <div className="flex justify-center items-center flex-wrap gap-4">
+            {[
+              '/cards/mastercard.png',
+              '/cards/visa.png',
+              '/cards/maestro.png',
+              '/cards/paypal.png',
+              '/cards/amazonpay.png',
+              '/cards/amex.png',
+              '/cards/klarna.png'
+            ].map((src, idx) => (
+              <img key={idx} src={src} alt="payment" className="h-6" />
+            ))}
             </div>
 
             <p className="xs text-gray font-light"> <a href="#" className="hover:underline">eCommerce</a>by Visualsoft</p>

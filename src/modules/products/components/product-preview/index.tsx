@@ -78,13 +78,13 @@ export default function ProductPreview({
         )}
 
         <div
-          className="absolute top-0 right-0 px-2 py-1 text-[10px] z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          className="absolute top-2 right-2 px-2 py-1 rounded text-[10px] z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           style={{ backgroundColor: "#F5F5F5" }}
         >
           <div className="font-medium text-gray-700 text-right mb-1">Sizes</div>
-          <div className="flex flex-col gap-1 items-start">
+          <div className="flex flex-col items-start">
             {sizes.map((size, idx) => (
-              <span key={idx} className="px-2 py-0.5 text-gray-800">
+              <span key={idx} className="text-gray-800 text-sm size-div">
                 {size}
               </span>
             ))}

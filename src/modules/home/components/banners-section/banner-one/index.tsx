@@ -4,7 +4,7 @@ const CelebrateSection = () => {
   return (
     <section className="bg-white py-8">
       <div className="text-center mb-10 section-2">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">You Save, We Give...</h2>
+        <h2 className="text-xl md:text-4xl font-bold mb-4">You Save, We Give...</h2>
         <p className="font-light">
          We're donating  <span className="font-bold">5% of or all sales </span> to charity. <span className="underline">Find out more about our Pink Ribbon campaign.</span>
         </p>

@@ -3,11 +3,11 @@ import React from 'react';
 const WelcomeSection: React.FC = () => {
   return (
     <section className="w-full bg-white py-20">
-      <div className="flex flex-col md:flex-row items-start gap-10">
+      <div className="flex flex-col  md:items-center md:justify-center  xl:flex-row xl:items-start gap-10 welcome">
       
-        <div className="md:w-1/2 px-6">
-          <h2 className="text-2xl font-serif mb-4">Welcome To Moda In Pelle</h2>
-          <p className="font-light text-gray mb-4 leading-relaxed text-sm">
+        <div className="w-[315px] md:w-full xl:w-1/2 px-6">
+          <h2 className=" text-xl   md:text-2xl font-serif mb-4">Welcome To Moda In Pelle</h2>
+          <p className="font-light text-justify text-[14px] text-gray mb-4 leading-relaxed md:text-sm">
             Founded in 1975, Moda in Pelle has been crafting{' '}
             <a href="#" className="underline hover:opacity-80">
               beautiful shoes
@@ -29,10 +29,11 @@ const WelcomeSection: React.FC = () => {
             Read More
           </a>
 
-          
+          <hr className='border-gray-300 mt-2 ho !w-screen hidden sm:block'></hr>          
           <div className="mt-10">
+             
             <h3 className="text-xl mb-2 font-como">Find Your Nearest Store</h3>
-            <div className="flex border border-gray-300 w-[350px] overflow-hidden" >
+            <div className="flex border border-gray-300 max-w-[250px] sm:w-[350px] overflow-hidden" >
               <input
                 type="text"
                 placeholder="e.g. TS18..."
@@ -49,11 +50,11 @@ const WelcomeSection: React.FC = () => {
         </div>
 
        
-        <div className="md:w-1/2">
+        <div className=" flex !justify-center xl:w-1/2">
           <img
             src="/welcome.webp" 
             alt="Moda In Pelle Store"
-            className="w-full h-[350px] object-cover"
+            className="lg:!w-[1024px] w-full pic sm:!w-full max-sm:!h-[150px] object-cover"
           />
         </div>
       </div>

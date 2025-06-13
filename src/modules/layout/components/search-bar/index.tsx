@@ -39,14 +39,15 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="search flex items-center mx-auto py-2 w-full">
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="flex-1 text-search text-gray-600 placeholder-gray-400 focus:outline-none min-w-0 w-full overflow-visible border-b border-gray-300 py-2"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    <div className="w-full flex justify-center">
+  <div className="flex se items-center max-sm:py-0 sm:py-2 max-sm:px-2 border sm:border-0 max-sm:w-[300px] w-full sm:max-w-md">
+  <input
+    type="text"
+    placeholder={placeholder}
+    className="text-search text-gray-600 placeholder-gray-400 focus:outline-none min-w-0 w-full overflow-visible border-b border-gray-300 max-sm:border-0 py-2 max-sm:placeholder:text-lg"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+  />
       <button onClick={handleSearch} className="ml-3 flex-shrink-0" aria-label="Search">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +63,7 @@ export default function SearchBar() {
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
       </button>
+    </div>
     </div>
   );
 }

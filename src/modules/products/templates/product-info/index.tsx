@@ -10,22 +10,23 @@ type ProductInfoProps = {
 const ProductInfo = ({ product, variant }: ProductInfoProps) => {
   return (
     <div id="product-info">
-      <div className="flex flex-col mx-auto py-8">
-        <Heading level="h2" className="font-como text-2xl font-light">
-          Moda In Pelle
-        </Heading>
+  <div className="flex flex-col mx-auto py-8  max-sm:items-center max-sm:text-center">
+    <Heading level="h2" className="font-como justify-center text-2xl font-light">
+      Moda In Pelle
+    </Heading>
 
-        <Heading level="h1" className="font-como text-3xl my-3">
-          {product.title}
-        </Heading>
+    <Heading level="h1" className="font-como text-3xl my-3">
+      {product.title}
+    </Heading>
 
-        <ProductPrice product={product} variant={variant} />
+    <ProductPrice product={product} variant={variant} />
 
-        <Text className="text-xs text-gray font-light whitespace-pre-line leading-relaxed pt-6">
-          {product.description}
-        </Text>
-      </div>
-    </div>
+    <Text className="text-xs text-gray font-light whitespace-pre-line leading-relaxed pt-6 max-sm:text-center">
+      {product.description}
+    </Text>
+  </div>
+</div>
+
   )
 }
 

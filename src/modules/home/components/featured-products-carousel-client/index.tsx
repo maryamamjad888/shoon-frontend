@@ -1,10 +1,12 @@
 'use client'
 
-import { useState } from "react"
-import { Text } from "@medusajs/ui"
-import InteractiveLink from "@modules/common/components/interactive-link"
+import { useState, useRef } from "react"
 import ProductCarousel from "../collection-slider"
 import { HttpTypes } from "@medusajs/types"
+import dynamic from 'next/dynamic'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+const Slider = dynamic(() => import('react-slick'), { ssr: false })
 
 interface CollectionWithProducts extends HttpTypes.StoreCollection {
   products: HttpTypes.StoreProduct[]
@@ -19,7 +21,17 @@ export default function FeaturedProductsClient({
 }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const activeCollection = collections[activeIndex]
-
+  
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    afterChange: (current: number) => setActiveIndex(current),
+  }
+  
   return (
     <div className="content-container collection-sec py-12 small:py-24">
       <div className="text-center mb-10 section-2">
@@ -28,7 +40,7 @@ export default function FeaturedProductsClient({
           Discover our stunning collection of shoes, boots, bags and accessories, designed with love and crafted with care for the ultimate in style and comfort.
         </p>
       </div>
-      <div className="flex justify-center items-center mb-6 space-x-4">
+      <div className="hidden justify-center items-center mb-6 space-x-4 sm:flex">
         {collections.map((collection, index) => (
           <span
             key={collection.id}
@@ -40,15 +52,15 @@ export default function FeaturedProductsClient({
           </span>
         ))}
       </div>
-
-
-      {/* <div className="flex justify-between items-center mb-4">
-        <Text className="txt-xlarge">{activeCollection.title}</Text>
-        <InteractiveLink href={`/collections/${activeCollection.handle}`}>
-          View all
-        </InteractiveLink>
-      </div> */}
-
+      <div className="sm:hidden mb-6 relative">
+        <Slider {...settings} className="coll mobcollection px-8">
+          {collections.map((collection, index) => (
+            <div key={index} className="text-center text-lg px-4">
+              {collection.title}
+            </div>
+          ))}
+        </Slider>
+      </div>
       <ProductCarousel products={activeCollection.products} region={region} />
     </div>
   )

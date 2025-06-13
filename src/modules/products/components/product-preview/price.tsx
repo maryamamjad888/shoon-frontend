@@ -45,13 +45,15 @@ export default function PreviewPrice({ price }: { price: VariantPrice }) {
         </div>
 
       )}
-      <div className="flex items-center mx-auto mt-3 gap-x-1">
-        {[...Array(4)].map((_, i) => (
-          <i key={i} className="las la-star text-black text-md"></i>
-        ))}
-        <i className="las la-star text-gray-400 text-md"></i>
-        <Text className="text-sm text-black">24 Reviews</Text>
-      </div>
+      <div className="flex flex-row max-[400px]:flex-col items-center mx-auto mt-3 gap-x-0.5 max-[400px]:gap-y-1 text-black">
+      <div className="flex">
+    {[...Array(4)].map((_, i) => (
+      <i key={i} className="las la-star text-black text-md"></i>
+    ))}
+    <i className="las la-star text-gray-400 text-md"></i>
+  </div>
+  <Text className="text-sm text-black">24 Reviews</Text>
+</div>
     </div>
   )
 }

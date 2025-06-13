@@ -9,6 +9,8 @@ import TopBar from "@modules/layout/components/sales-bar"
 import SearchBar from "@modules/layout/components/search-bar"
 import HeaderRight from "@modules/layout/components/header-right"
 import BottomBar from "@modules/layout/components/bottom-bar"
+import MobNav from "@modules/layout/components/mobile-nav"
+
 
 
 export default async function Nav() {
@@ -20,7 +22,7 @@ export default async function Nav() {
   return (
     <div className="top-0 inset-x-0 z-50 group">
       <TopBar />
-      <header className="relative mx-auto border-b duration-200 bg-white border-ui-border-base">
+      <header className="relative mx-auto border-b duration-200 bg-white border-ui-border-base hidden sm:block">
 
         <nav className="content-container txt-xsmall-plus my-3 text-ui-fg-subtle flex items-center justify-between w-full h-16 text-small-regular">
           <div className="flex-1 basis-0 h-full flex items-center">
@@ -66,10 +68,10 @@ export default async function Nav() {
           <CartButton />
         </Suspense>
       </div> */}
-          <HeaderRight />
+          <HeaderRight/>
         </nav>
 
-        <div className="content-container nav-bar hidden small:flex items-center gap-x-6 h-12 text-small-regular justify-evenly">
+        <div className="content-container nav-bar hidden md:-mt-2 sm:flex md:gap-x-2 !md:text-[19px] items-center lg:gap-x-6 h-12 text-small-regular justify-evenly">
           {topCategories.map((cat, index) => {
             const children = cat.category_children || [];
             const categoryImage = `/category/${cat.handle}.webp`;
@@ -78,7 +80,7 @@ export default async function Nav() {
               <div key={cat.id} className="relative group/category">
                 <LocalizedClientLink
                   href={`/categories/${cat.handle}`}  
-                  className={`hover:text-ui-fg-base relative z-10 py-6 ${index === 0 ? 'text-red-500' : ''}`}
+                  className={`hover:text-ui-fg-base relative whitespace-nowrap z-10 py-6 ${index === 0 ? 'text-red-500' : ''}`}
                 >
                   {cat.name}
                 </LocalizedClientLink>
@@ -93,7 +95,7 @@ export default async function Nav() {
                               <li key={child.id}>
                                 <LocalizedClientLink
                                   href={`/categories/${child.handle}`}
-                                  className="hover:text-ui-fg-base"
+                                  className="hover:text-ui-fg-base "
                                 >
                                   {child.name}
                                 </LocalizedClientLink>
@@ -119,6 +121,8 @@ export default async function Nav() {
         </div>
 
       </header>
+      
+      <MobNav topCategories={topCategories} />
       <BottomBar />
     </div>
 

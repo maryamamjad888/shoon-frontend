@@ -26,20 +26,30 @@ export default function ProductCarousel({
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows:true,
+        },
+      },
+       {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          arrows:false,
         },
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          arrows: false,
         },
       },
     ],
   }
 
   return (
-    <Slider {...settings} className="slick-slider">
+    <Slider {...settings} className=" product slick-slider">
       {products.map((product) => (
         <div key={product.id} className="px-2">
           <ProductPreview

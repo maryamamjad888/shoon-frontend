@@ -21,6 +21,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 }) => {
   const filteredOptions = (option.values ?? []).map((v) => v.value)
   const isColorOption = title.toLowerCase().includes("color")
+  const isSizeOption = title.toLowerCase().includes("size")
 
   useEffect(() => {
     if (!current && filteredOptions.length > 0 && !disabled) {
@@ -45,17 +46,18 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               disabled={disabled}
               data-testid="option-button"
               className={clx(
-                "transition-all",
-                isColorOption
-                  ? "rounded-full w-10 h-10 p-0" 
-                  : "h-10 p-2 text-small-regular",
-                {
-                  "border-2 border-gray-400": isColorOption && isSelected,
-                  "border-2 border-black": !isColorOption && isSelected,
-                  "border border-gray-400": isColorOption && !isSelected,
-                  "border-gray border": !isSelected,
-                }
-              )}
+  "transition-all",
+  isColorOption
+    ? "rounded-full w-10 h-10 p-0" 
+    : "h-10 p-2 text-small-regular",
+  {
+    "border-2 border-black": isColorOption && isSelected,
+    "border-2 border-black-100": !isColorOption && isSelected,
+    "border border-gray-400": isColorOption && !isSelected,
+    "border-gray border": !isSelected,
+  },
+  isSizeOption && "shoes go"
+)}
               style={
                 isColorOption
                   ? {

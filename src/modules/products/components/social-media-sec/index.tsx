@@ -4,8 +4,8 @@ import { FaFacebookF, FaInstagram, FaPinterestP, FaRegCommentDots, FaXTwitter } 
 
 const SocialMedia = () => {
     return (
-        <div className="flex flex-col lg:flex-row pb-3 mt-6">
-        <div className="flex space-x-8 text-black text-xl">
+        <div className="flex  pb-3 mt-6">
+        <div className="flex space-x-8 max-sm:space-x-4 justify-center mx-auto  text-black text-xl">
             <a href="#" className="hover:bg-blue-600 hover:text-white text-black p-2 rounded-full transition-colors duration-300"><FaFacebookF /></a>
             <a href="#" className="hover:bg-black hover:text-white text-black p-2 rounded-full transition-colors duration-300"><FaXTwitter /></a>
             <a href="#" className="hover:bg-pink-500 hover:text-white text-black p-2 rounded-full transition-colors duration-300"><FaInstagram /></a>

@@ -58,7 +58,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           </Suspense>
           <SimilarProductsWrapper product={product} countryCode={countryCode}/>
           <ProductInfoSection/>
+          <div className="max-sm:hidden">
           <SocialMedia/>
+          </div>
         </div>
       </div>
       <div
