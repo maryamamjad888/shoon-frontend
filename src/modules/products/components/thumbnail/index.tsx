@@ -38,7 +38,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
             width={400}
             height={400}
             style={{ width: "100%", height: "auto" }}
-            className="transition-opacity duration-300 group-hover:opacity-0"
+            className="transition-opacity duration-300"
           />
           {secondImage && (
             <Image
