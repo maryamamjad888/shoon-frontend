@@ -2,11 +2,12 @@ import React from 'react';
 
 const WelcomeSection: React.FC = () => {
   return (
-    <section className="w-full bg-white py-20">
-      <div className="flex flex-col  md:items-center md:justify-center  xl:flex-row xl:items-start gap-10 welcome">
+    <section className="w-[90.5%] bg-white py-20 mx-auto">
+      <div className="flex flex-col md:items-center md:justify-center xl:flex-row xl:items-start gap-10 welcome">
       
-        <div className="w-[315px] md:w-full xl:w-1/2 px-6">
-          <h2 className=" text-xl   md:text-2xl font-serif mb-4">Welcome To Moda In Pelle</h2>
+        <div className="md:w-full xl:w-1/2">
+        {/*  px-6 */}
+          <h2 className=" text-xl md:text-2xl font-serif mb-4">Welcome To Moda In Pelle</h2>
           <p className="font-light text-justify text-[14px] text-gray mb-4 leading-relaxed md:text-sm">
             Founded in 1975, Moda in Pelle has been crafting{' '}
             <a href="#" className="underline hover:opacity-80">
@@ -29,7 +30,7 @@ const WelcomeSection: React.FC = () => {
             Read More
           </a>
 
-          <hr className='border-gray-300 mt-2 ho !w-screen hidden sm:block'></hr>          
+          <hr className='border-gray-300 mt-2 ho !w-full hidden sm:block'></hr>          
           <div className="mt-10">
              
             <h3 className="text-xl mb-2 font-como">Find Your Nearest Store</h3>

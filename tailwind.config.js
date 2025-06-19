@@ -56,6 +56,9 @@ module.exports = {
         xlarge: "1680px",
         "2xlarge": "1920px",
       },
+       spacing: {
+        '1/4': '25%',
+      },
       fontSize: {
         "3xl": "2rem",
       },

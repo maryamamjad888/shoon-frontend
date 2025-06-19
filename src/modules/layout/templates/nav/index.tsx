@@ -20,7 +20,8 @@ export default async function Nav() {
   const topCategories = productCategories?.filter((cat) => !cat.parent_category)
 
   return (
-    <div className="top-0 inset-x-0 z-50 group">
+    // group
+    <div className="top-0 inset-x-0 z-50">
       <TopBar />
       <header className="relative mx-auto border-b duration-200 bg-white border-ui-border-base hidden sm:block">
 
