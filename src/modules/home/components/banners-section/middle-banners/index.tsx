@@ -4,7 +4,7 @@ const MiddleBanners = () => {
     return (
         <section>
             <section className="pb-10">
-                <div className="w-full relative">
+                <div className="w-[90.5%] mx-auto relative">
                     <div className="inset-0 z-10 flex flex-col justify-center items-center">
                         <a href="">
                             <picture>
@@ -22,7 +22,7 @@ const MiddleBanners = () => {
 
             </section>
             <section className="pb-10">
-                <div className="w-full relative">
+                <div className="w-[90.5%] mx-auto relative">
                     <div className="inset-0 z-10 flex flex-col justify-center items-center">
                         <a href="">
                             <picture>
@@ -54,7 +54,7 @@ const MiddleBanners = () => {
 
             </section> */}
             <section className="pb-10">
-                <div className="w-full relative">
+                <div className="w-[90.5%] mx-auto relative">
                     <div className="inset-0 z-10 flex flex-col justify-center items-center">
                         <a href="">
                             <picture>
