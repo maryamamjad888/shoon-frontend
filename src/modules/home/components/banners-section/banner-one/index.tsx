@@ -2,11 +2,11 @@ import React from 'react';
 
 const CelebrateSection = () => {
   return (
-    <section className="bg-white py-8">
+    <section className="bg-white py-8 px-8 sm:px-0">
       <div className="text-center mb-10 section-2">
         <h2 className="text-xl md:text-4xl font-bold mb-4">You Save, We Give...</h2>
         <p className="font-light">
-         We're donating  <span className="font-bold">5% of or all sales </span> to charity. <span className="underline">Find out more about our Pink Ribbon campaign.</span>
+          We're donating  <span className="font-bold">5% of or all sales </span> to charity. <span className="underline">Find out more about our Pink Ribbon campaign.</span>
         </p>
       </div>
 
@@ -16,10 +16,10 @@ const CelebrateSection = () => {
           <img
             src="/bann1.png"
             alt="Look 1"
-            className="w-full object-cover h-[650px]"
+            className="w-full object-cover h-[430px] sm:h-[650px]"
           />
           <button
-            className="w-[270px] mt-8 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
+            className="w-[270px] mt-8 mb-8 sm:mb-0 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
           >
             Shop Sandals
           </button>
@@ -30,10 +30,10 @@ const CelebrateSection = () => {
           <img
             src="/bann2.png"
             alt="Look 2"
-            className="w-full object-cover h-[650px]"
+            className="w-full object-cover h-[430px] sm:h-[650px]"
           />
-          <button
-            className="w-[270px] mt-8 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
+            <button
+            className="w-[270px] mt-8 mb-8 sm:mb-0 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
           >
             Shop Trainers
           </button>
@@ -44,10 +44,10 @@ const CelebrateSection = () => {
           <img
             src="/bann3.png"
             alt="Look 3"
-            className="w-full object-cover h-[650px]"
+            className="w-full object-cover h-[430px] sm:h-[650px]"
           />
           <button
-            className="w-[270px] mt-8 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
+            className="w-[270px] mt-8 mb-8 sm:mb-0 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
           >
             Shop Shoes
           </button>
@@ -56,10 +56,10 @@ const CelebrateSection = () => {
           <img
             src="/bann4.png"
             alt="Look 4"
-            className="w-full object-cover h-[650px]"
+            className="w-full object-cover h-[430px] sm:h-[650px]"
           />
-          <button
-            className="w-[270px] mt-8 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
+           <button
+            className="w-[270px] mt-8 mb-8 sm:mb-0 py-3 font-bold border border-black hover:bg-black hover:text-white transition-colors duration-200 uppercase"
           >
             Shop Bags & Accessories
           </button>

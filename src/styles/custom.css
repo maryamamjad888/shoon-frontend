@@ -591,3 +591,12 @@ input:not(:placeholder-shown)~label {
   font-size: 13px;
   letter-spacing: 0.1rem;
 }
+.currency-icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.currency-icon-container:hover .currency-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
