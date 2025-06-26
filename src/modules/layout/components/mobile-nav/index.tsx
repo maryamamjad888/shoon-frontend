@@ -94,13 +94,13 @@ useEffect(() => {
 
     {/* Login */}
     <div className="flex flex-col items-center">
-      <FontAwesomeIcon icon={faUser} className="scale-[0.9] ml-2 mt-1" />
+      <FontAwesomeIcon icon={faUser} className="scale-[0.9] mt-1" />
       <span className="text-sm font-medium text-black mobtop">Login</span>
     </div>
 
     {/* My Bag */}
     <div className="flex flex-col items-center">
-      <i className="las la-shopping-bag ml-2" style={{ fontSize: '19px' }} />
+      <i className="las la-shopping-bag" style={{ fontSize: '19px' }} />
       <span className="text-sm font-medium text-black mobtop">My Bag</span>
     </div>
   </div>

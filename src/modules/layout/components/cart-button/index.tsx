@@ -1,10 +1,16 @@
+"use client"
 
-
-import { retrieveCart } from "@lib/data/cart"
+import { useEffect, useState } from "react"
 import CartDropdown from "../cart-dropdown"
+import { getCart } from "@lib/hooks/use-cart"
+import type { StoreCart } from "@medusajs/types" // optional, for TS
 
-export default async function CartButton() {
-  const cart = await retrieveCart().catch(() => null)
+export default function CartButton() {
+  const [cart, setCart] = useState<StoreCart | null>(null)
+
+  useEffect(() => {
+    getCart().then(setCart).catch(() => setCart(null))
+  }, [])
 
   return <CartDropdown cart={cart} />
 }

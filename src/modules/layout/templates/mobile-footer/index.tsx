@@ -42,7 +42,7 @@ const FooterLinks = () => {
       <div className="space-y-6">
 
         {/* Newsletter Sign Up at the top */}
-        <div className="mt-6 !items-center">
+        <div className="mt-6 text-center w-full mx-auto !items-center">
           <h4 className="mobfooter font-como mb-3  text-center">Newsletter Sign Up</h4>
           <div className="flex items-center border border-gray-300 overflow-hidden mb-2 w-full">
             <input
@@ -64,7 +64,7 @@ const FooterLinks = () => {
 
         {/* Accordion Sections */}
         {sections.map(({ title, items }) => (
-          <div key={title} className="border-t mobfooter border-black  ">
+          <div key={title} className="border-t mobfooter border-black">
             <button
               onClick={() => toggleSection(title)}
               className="w-full flex justify-center items-center text-left"

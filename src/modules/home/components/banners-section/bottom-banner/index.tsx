@@ -11,7 +11,7 @@ const BottomBanners = () => {
             </div>
 
             <section>
-                <div className="w-[90.5%] mx-auto relative">
+                <div className="w-full mx-auto relative">
                     <div className="inset-0 z-10 flex flex-col justify-center items-center">
                         <a href="">
                             <picture>
@@ -28,7 +28,7 @@ const BottomBanners = () => {
 
             </section>
             <section className="px-10 pt-10">
-                <div className="w-[90.5%] mx-auto relative">
+                <div className="w-full mx-auto relative">
                     <div className="inset-0 z-10 flex flex-col justify-center items-center">
                         <a href="">
                             <picture>
