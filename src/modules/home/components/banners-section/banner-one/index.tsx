@@ -2,7 +2,7 @@ import React from 'react';
 
 const CelebrateSection = () => {
   return (
-    <section className="bg-white py-8">
+    <section className="bg-white py-8 px-8 sm:px-0">
       <div className="text-center mb-10 section-2">
         {/* Changed */}
   <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
@@ -24,7 +24,6 @@ const CelebrateSection = () => {
       Shop Sandals
     </button>
   </div>
-
   <div className="flex flex-col items-center w-full sm:w-[48%] xl:w-[22%]">
     <img
       src="/bann2.png"
@@ -58,9 +57,8 @@ const CelebrateSection = () => {
     </button>
   </div>
 </div>
-
       {/* Changed */}
-
+    
     </section>
 
 

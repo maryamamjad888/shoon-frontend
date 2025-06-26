@@ -5,7 +5,7 @@ const BottomBanners = () => {
         <section className="bg-white pt-12">
             <div className="text-center  -mt-14 mb-5 sm:mb-10 section-2">
                 <h2 className="!text-xl sm:text-3xl md:text-4xl font-bold sm:mb-4">#MyModaShoes</h2>
-                <p className="!text-[16px] text-gray-600 uppercase tracking-wide sm:text-base">
+                <p className="!text-[16px] text-gray-600 uppercase tracking-wide sm:text-base px-8 sm:px-0">
                     Be inspired by our favorite style icons
                 </p>
             </div>
