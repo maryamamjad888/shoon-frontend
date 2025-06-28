@@ -10,17 +10,43 @@ body {
   overflow-x: hidden !important;
 }
 
+.cormorant {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 43px;
+  color: #232323;
+}
+
+.lato {
+  font-family: "Lato",sans-serif;
+}
+
+.f-16 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.f-12 {
+  font-size: 12px;
+}
+
+.f-13 {
+  font-size: 13px;
+}
+
+
+.contact-ul li::before {
+  content: "\2022";
+  color: #7d7d7d;
+  margin-right: 1em;
+}
+
 .wel-ban {
-
-
   color: rgb(35, 35, 35);
   cursor: pointer;
-
   font-family: "Cormorant Garamond", serif;
   font-size: 20px;
-
-
-
 }
 
 @media (min-width:2500) {

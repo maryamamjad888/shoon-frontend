@@ -7,8 +7,8 @@ const TabFooter = () => {
 return (
     <>
         {/* Newsletter - Outside and Centered */}
-        <div className="w-[700px] hidden md:flex xl:hidden justify-center px-4 mb-10">
-            <div className="max-w-md  lg:ml-60  md:ml-0 w-full text-center">
+        <div className="w-full hidden md:flex xl:hidden justify-center px-4 mb-10">
+            <div className="max-w-md mx-auto w-full text-center">
                 <h4 className="text-lg font-como mb-3 text-black">Newsletter Sign Up</h4>
                 <div className="flex items-center border border-gray-300 overflow-hidden mb-2 w-full">
                     <input

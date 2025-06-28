@@ -4,6 +4,17 @@ import FooterLinks from '../mobile-footer';
 import TabFooter from '../tab-footer';
 
 const Footer: React.FC = () => {
+  const footerHelpLinks = [
+  { label: 'Contact Us', href: '/contact' },
+  { label: 'Delivery', href: '/delivery' },
+  { label: 'Click & Collect', href: '/click-and-collect' },
+  { label: 'Make A Return', href: '/returns' },
+  { label: 'Security & Privacy', href: '/security-privacy' },
+  { label: 'Size Guide', href: '/size-guide' },
+  { label: 'Klarna FAQs', href: '/klarna-faqs' },
+  { label: 'Terms & Conditions', href: '/terms' },
+  { label: 'FAQs', href: '/faqs' }
+];
   return (
     <footer className="bg-white border-t text-sm">
       <div className="mx-auto py-3">
@@ -24,11 +35,13 @@ const Footer: React.FC = () => {
             {/* Help */}
             <div>
               <h4 className="text-lg mb-3 text-black font-como">Help</h4>
-              <ul className="space-y-2 text-gray font-light text-sm">
-                {['Contact Us', 'Delivery', 'Click & Collect', 'Make A Return', 'Security & Privacy', 'Size Guide', 'Klarna FAQs', 'Terms & Conditions', 'FAQs'].map((item, i) => (
-                  <li key={i}><a href="#" className="hover:underline">{item}</a></li>
-                ))}
-              </ul>
+         <ul className="space-y-2 text-gray font-light text-sm">
+              {footerHelpLinks.map(({ label, href }, i) => (
+             <li key={i}>
+            <a href={href} className="hover:underline">{label}</a>
+             </li>
+            ))}
+         </ul>
             </div>
            {/* Pages */}
             <div>
